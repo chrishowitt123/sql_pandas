@@ -14,7 +14,7 @@ title = "Customer_Total_Spend"
 
 sql = ("""
 
-SELECT customer_id, sum(amount)
+SELECT customer_id, sum(amount) AS total_spend
 FROM payment
 GROUP BY customer_id
 ORDER BY customer_id
@@ -25,9 +25,9 @@ png = f'{title}.png'
     
 df = pd.read_sql_query(sql, conn)
 conn = None
-fig = px.scatter(df, x='customer_id', y='sum')
+fig = px.scatter(df, x='customer_id', y='total_spend')
 fig.write_image(png)
-
+        
 workbook = xlsxwriter.Workbook('images.xlsx')
 worksheet = workbook.add_worksheet(name='Graph')
 worksheet.insert_image('B5', png)
