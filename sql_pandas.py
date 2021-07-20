@@ -40,17 +40,17 @@ writer = pd.ExcelWriter('pandas_image.xlsx', engine='xlsxwriter')
 df.to_excel(writer, sheet_name='Sheet1', index=False, startrow=2, startcol=1)
 
 # define col length
-col_len = len(df['total_spend']) + 1
+col_len = len(df['total_spend']) + 3
 
 # define workbook object
 workbook  = writer.book
 worksheet = writer.sheets['Sheet1']
 
 # conditional format target values using f-sting to con_len
-worksheet.conditional_format(f'B2:C{col_len}', {'type': '3_color_scale'})
+worksheet.conditional_format(f'B3:B{col_len}', {'type': '3_color_scale'})
 
 # insert graph
-worksheet.insert_image('D1', png)
+worksheet.insert_image('E3', png)
 
 # set col width
 def Sorting(lst):
@@ -61,7 +61,7 @@ cols_list = df.columns.values.tolist()
 cols_ordered = Sorting(cols_list)
 col_width = len(cols_ordered[0])
 
-worksheet.set_column('A:B', col_width)
+worksheet.set_column('B:C', col_width)
 
 # save
 writer.save()
