@@ -37,7 +37,7 @@ fig.write_image(png)
 writer = pd.ExcelWriter('pandas_image.xlsx', engine='xlsxwriter')
 
 # write df to xlsx
-df.to_excel(writer, sheet_name='Sheet1', index=False)
+df.to_excel(writer, sheet_name='Sheet1', index=False, startrow=2, startcol=1)
 
 # define col length
 col_len = len(df['total_spend']) + 1
@@ -50,7 +50,7 @@ worksheet = writer.sheets['Sheet1']
 worksheet.conditional_format(f'B2:C{col_len}', {'type': '3_color_scale'})
 
 # insert graph
-worksheet.insert_image('D3', png)
+worksheet.insert_image('D1', png)
 
 # set col width
 def Sorting(lst):
