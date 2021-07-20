@@ -52,7 +52,7 @@ cell_format = workbook.add_format({'bold': True})
 worksheet.write(0, 1, 'Customer ID Total Spend', cell_format)
 
 # conditional format target values using f-sting to con_len
-worksheet.conditional_format(f'B3:B{col_len}', {'type': '3_color_scale'})
+worksheet.conditional_format(f'C3:C{col_len}', {'type': '3_color_scale'})
 
 # insert graph
 worksheet.insert_image('E3', png)
