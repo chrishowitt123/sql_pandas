@@ -36,6 +36,7 @@ fig.write_image(png)
 # create xlsx file
 writer = pd.ExcelWriter('pandas_image.xlsx', engine='xlsxwriter')
 
+
 # write df to xlsx
 df.to_excel(writer, sheet_name='Sheet1', index=False, startrow=2, startcol=1)
 
@@ -45,6 +46,10 @@ col_len = len(df['total_spend']) + 3
 # define workbook object
 workbook  = writer.book
 worksheet = writer.sheets['Sheet1']
+
+# title
+cell_format = workbook.add_format({'bold': True})
+worksheet.write(0, 1, 'Customer ID Total Spend', cell_format)
 
 # conditional format target values using f-sting to con_len
 worksheet.conditional_format(f'B3:B{col_len}', {'type': '3_color_scale'})
